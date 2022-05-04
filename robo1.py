@@ -1,13 +1,22 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import xlrd
 
 print("Iniciando robô...\n")
 
-driver = webdriver.Chrome('C:/Users/maiury.nascimento/Desktop/Robos/chromedriver')
+dominios = []
+#Lendo do Exel
+workbook = xlrd.open_workbook('dominio.xlsx')
+sheet = workbook.sheet_by_index(0)
+
+for linha in range(0,8):
+   dominios.append(sheet.cell_value(linha,0))  #print(sheet.cell_value(linha,0)) # função que recebe linha e coluna da planilha
+
+driver = webdriver.Chrome('C:/Users/maiury.nascimento/Desktop/robos/chromedriver')
 driver.get("https://registro.br/")
 
-dominios = ["roboscompython.com.br", "udemy.com","uol.com.br","pythoncursos.com"] # Domínio a ser pesquisado
+#dominios = ["roboscompython.com.br", "udemy.com","uol.com.br","pythoncursos.com"] # Domínio a ser pesquisado
 
 for dominio in dominios:
     pesquisa = driver.find_element_by_id("is-avail-field") #Encontrar barra de pesquisa
