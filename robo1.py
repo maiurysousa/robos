@@ -4,6 +4,7 @@ import time
 import xlrd
 
 print("Iniciando robô...\n")
+arq = open("resultado.txt", "w") #Abrir/criar arquivo para escrita 
 
 dominios = []
 #Lendo do Exel
@@ -27,7 +28,10 @@ for dominio in dominios:
     resultados = driver.find_elements_by_tag_name("strong")
 
     #import pdb; pdb.set_trace() #Para o programa no meio da execução para interagir com o mesmo
-    print("Domínio %s está %s" % (dominio, resultados[4].text)) # Dizer exatamente o domínio disponível.
+    #print("Domínio %s está %s" % (dominio, resultados[4].text)) # Dizer exatamente o domínio disponível.
+    texto = "Domínio %s está %s \n" % (dominio, resultados[4].text)
+    arq.write(texto)
 
-#time.sleep(8) 
+#time.sleep(8)
+arq.close() 
 driver.close()
