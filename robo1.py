@@ -12,7 +12,8 @@ workbook = xlrd.open_workbook('dominio.xlsx')
 sheet = workbook.sheet_by_index(0)
 
 for linha in range(0,8):
-   dominios.append(sheet.cell_value(linha,0))  #print(sheet.cell_value(linha,0)) # função que recebe linha e coluna da planilha
+    #print(sheet.cell_value(linha,0)) 
+    dominios.append(sheet.cell_value(linha,0)) # função que recebe linha e coluna da planilha
 
 driver = webdriver.Chrome('C:/Users/maiury.nascimento/Desktop/robos/chromedriver')
 driver.get("https://registro.br/")
